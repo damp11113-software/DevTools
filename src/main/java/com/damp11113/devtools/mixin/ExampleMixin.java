@@ -1,6 +1,8 @@
-package net.fabricmc.example.mixin;
+package com.damp11113.devtools.mixin;
 
-import net.fabricmc.example.ExampleMod;
+import com.damp11113.devtools.DevTools;
+import com.damp11113.devtools.ImGuiLayer;
+import com.damp11113.devtools.Window;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +13,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExampleMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		ExampleMod.LOGGER.info("This line is printed by an example mod mixin!");
+		DevTools.LOGGER.info("This line is printed by an example mod mixin!");
+		Window window = new Window(new ImGuiLayer());
+		window.init();
+		window.run();
 	}
 }
+
